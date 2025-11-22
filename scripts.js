@@ -14,6 +14,10 @@ function multiply(a, b){
     return a*b;
 }
 
+function divide(a, b){
+    return a/b;
+}
+
 function prototype(){
     const a = parseInt(prompt("input first number: "));
     const b = parseInt(prompt("input second number: "));
@@ -21,4 +25,5 @@ function prototype(){
     console.log(`add: ${add(a, b)}`);
     console.log(`substract: ${substract(a, b)}`);
     console.log(`multiply: ${multiply(a, b)}`);
+    console.log(`divide: ${divide(a, b)}`);
 }
