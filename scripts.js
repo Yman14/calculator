@@ -5,7 +5,7 @@ validate.classList.add("validated");
 let a, operator, b;
 
 //
-prototype();
+//prototype();
 
 
 function add(a, b){
