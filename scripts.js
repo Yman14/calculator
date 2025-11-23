@@ -54,3 +54,13 @@ function operate(a, operator, b){
     if(operator == "*") return multiply(a, b);
     if(operator == "/") return divide(a, b);
 }
+
+//experiment to get data usinh button
+function experiment(){
+    const buttons = [...document.querySelectorAll('.button-text')];
+    const number = buttons
+    .map(button => button.textContent);
+    console.log(buttons);
+    console.log(number);
+}
+experiment();
