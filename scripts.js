@@ -3,9 +3,12 @@ validate.classList.add("validated");
 
 //global
 let a, operator, b;
+const displayText = document.querySelector(".screen-text");
+displayText.textContent = "Hello world!";
 
 //
 //prototype();
+
 
 
 function add(a, b){
