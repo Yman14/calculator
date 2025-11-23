@@ -57,10 +57,25 @@ function operate(a, operator, b){
 
 //experiment to get data usinh button
 function experiment(){
+    //get all the elements that have button-text class
     const buttons = [...document.querySelectorAll('.button-text')];
-    const number = buttons
+    //extract the text content of the elements
+    const buttonTexts = buttons
     .map(button => button.textContent);
+    //get all the texts that are numbers and convert it to integer
+    const numbers = buttonTexts
+    .filter((text) => (/[0-9]/.test(text)))
+    .map(number => parseInt(number));
+    //get all the operators
+    const ops = buttonTexts
+    .filter((op) => {
+        const arr = ["/", "x", "-", "=", "+",];
+        return (arr.includes(op));
+    });
+    
     console.log(buttons);
-    console.log(number);
+    console.log(buttonTexts);
+    console.log(numbers);
+    console.log(ops);
 }
 experiment();
