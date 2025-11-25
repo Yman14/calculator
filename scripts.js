@@ -3,8 +3,6 @@ validate.classList.add("validated");
 
 //global
 let a, operator, b, result;
-let displayText = document.querySelector(".screen-text");
-displayText.textContent = "0";
 calculation();
 
 //
@@ -57,7 +55,15 @@ function operate(a, operator, b){
     return `Invalid operator: ${operator}`;
 }
 
+function display(text){
+    let displayText = document.querySelector(".screen-text");
+    displayText.textContent = text;
+}
+
 function calculation(){
+    //set display
+    display("0");    
+
     //logic for button clicks to input values
     const mainButtons  = document.querySelector('.main-buttons');
     mainButtons.addEventListener('click', (e) =>{
@@ -67,7 +73,7 @@ function calculation(){
             console.log(`a: ${a} | b: ${b}`);
             //store first input to a then if a is defined, store to b
             (a != undefined) ? b = parseInt(e.target.textContent) : a = parseInt(e.target.textContent);
-            displayText.textContent = e.target.textContent;
+            display(e.target.textContent);
             console.log(`a: ${a} | b: ${b}`);
         }
         //take operator input
@@ -81,7 +87,7 @@ function calculation(){
                 if(result != undefined) a = result;
 
                 operator = e.target.textContent;
-                displayText.textContent = e.target.textContent;
+                display(e.target.textContent);
                 console.log(`operator: ${operator}`);
             }
         }
@@ -91,7 +97,7 @@ function calculation(){
             console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
 
             result = operate(a, operator, b);
-            displayText.textContent = result;
+            display(result);
             console.log(`result: ${result}`);
         }
     });
