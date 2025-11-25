@@ -4,7 +4,7 @@ validate.classList.add("validated");
 //global
 let a, operator, b;
 let displayText = document.querySelector(".screen-text");
-displayText.textContent = "Hello world!";
+displayText.textContent = "0";
 
 //
 //prototype();
@@ -53,7 +53,9 @@ function operate(a, operator, b){
     if(operator == "-") return substract(a, b);
     if(operator == "*") return multiply(a, b);
     if(operator == "/") return divide(a, b);
+    return `Invalid operator: ${operator}`;
 }
+
 
 //experiment to get data usinh button
 function experiment(){
@@ -78,6 +80,7 @@ function experiment(){
     console.log(numbers);
     console.log(ops);
 
+    //logic for button clicks to input values
     const mainButtons  = document.querySelector('.main-buttons');
     mainButtons.addEventListener('click', (e) =>{
         if(e.target.classList.contains('button-number'))
@@ -88,9 +91,26 @@ function experiment(){
         }
         if(e.target.classList.contains('button-op'))
         {
-            displayText.textContent = e.target.textContent;
-            operator = e.target.textContent;
-            console.log(`operator: ${operator}`);
+            //to make sure only these operators are considered
+            const ops = ["/", "x", "-", "+",];
+            if(ops.includes(e.target.textContent))
+            {
+                displayText.textContent = e.target.textContent;
+                operator = e.target.textContent;
+                console.log(`operator: ${operator}`);
+            }
+        }
+
+        //pressing equal button
+        if(e.target.textContent == "=")
+        {
+            b = 7; //hardcoded for testing
+            const temp = operate(a, operator, 7);
+            displayText.textContent = temp;
+            console.log(`result: ${temp}`);
+            console.log(`test: ${operate(a, operator, b)}`);
+            console.log(`test: ${operate(2, "+", 3)}`);
+            console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
         }
     });
 }
