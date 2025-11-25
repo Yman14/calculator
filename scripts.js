@@ -60,6 +60,15 @@ function display(text){
     displayText.textContent = text;
 }
 
+function clear(){
+    a = undefined;
+    b = undefined;
+    operator = undefined;
+    result = undefined;
+    display("0");
+    opButtonUIReset();
+}
+
 function opButtonUIReset(){
     const opButtons = document.querySelectorAll('.button-op');
     opButtons.forEach((button) => {
@@ -72,7 +81,7 @@ function calculation(){
     display("0");    
 
     //logic for button clicks to input values
-    const mainButtons  = document.querySelector('.main-buttons');
+    const mainButtons  = document.querySelector('.buttons-container');
     mainButtons.addEventListener('click', (e) =>{
         //take number inputs
         if(e.target.classList.contains('button-number'))
@@ -112,6 +121,13 @@ function calculation(){
             console.log(`result: ${result}`);
 
             opButtonUIReset();
+        }
+
+        //pressing clear button
+        if(e.target.textContent == "CL")
+        {
+            clear();
+            console.log("clear pressed");
         }
     });
 }
