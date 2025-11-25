@@ -60,6 +60,13 @@ function display(text){
     displayText.textContent = text;
 }
 
+function opButtonUIReset(){
+    const opButtons = document.querySelectorAll('.button-op');
+    opButtons.forEach((button) => {
+        button.classList.remove('clicked');
+    });
+}
+
 function calculation(){
     //set display
     display("0");    
@@ -89,6 +96,9 @@ function calculation(){
                 operator = e.target.textContent;
                 display(e.target.textContent);
                 console.log(`operator: ${operator}`);
+                //ui
+                opButtonUIReset();
+                e.target.classList.add('clicked');
             }
         }
         //pressing equal button
