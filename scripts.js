@@ -2,9 +2,10 @@ const validate = document.querySelector("h1");
 validate.classList.add("validated");
 
 //global
-let a, operator, b;
+let a, operator, b, result;
 let displayText = document.querySelector(".screen-text");
 displayText.textContent = "0";
+calculation();
 
 //
 //prototype();
@@ -56,6 +57,47 @@ function operate(a, operator, b){
     return `Invalid operator: ${operator}`;
 }
 
+function calculation(){
+    //logic for button clicks to input values
+    const mainButtons  = document.querySelector('.main-buttons');
+    mainButtons.addEventListener('click', (e) =>{
+        //take number inputs
+        if(e.target.classList.contains('button-number'))
+        {
+            console.log(`a: ${a} | b: ${b}`);
+            //store first input to a then if a is defined, store to b
+            (a != undefined) ? b = parseInt(e.target.textContent) : a = parseInt(e.target.textContent);
+            displayText.textContent = e.target.textContent;
+            console.log(`a: ${a} | b: ${b}`);
+        }
+        //take operator input
+        if(e.target.classList.contains('button-op'))
+        {
+            //to make sure only these operators are considered
+            const ops = ["/", "x", "-", "+",];
+            if(ops.includes(e.target.textContent))
+            {
+                //if operator is pressed again and result is defined, assign result to a
+                if(result != undefined) a = result;
+
+                operator = e.target.textContent;
+                displayText.textContent = e.target.textContent;
+                console.log(`operator: ${operator}`);
+            }
+        }
+        //pressing equal button
+        if(e.target.textContent == "=")
+        {
+            console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
+
+            result = operate(a, operator, b);
+            displayText.textContent = result;
+            console.log(`result: ${result}`);
+        }
+    });
+}
+
+
 
 //experiment to get data usinh button
 function experiment(){
@@ -96,6 +138,8 @@ function experiment(){
             const ops = ["/", "x", "-", "+",];
             if(ops.includes(e.target.textContent))
             {
+                //if operator is pressed again and result is defined, assign result to a
+                if(result != undefined) a = result;
                 displayText.textContent = e.target.textContent;
                 operator = e.target.textContent;
                 console.log(`operator: ${operator}`);
@@ -105,11 +149,11 @@ function experiment(){
         //pressing equal button
         if(e.target.textContent == "=")
         {
-            const temp = operate(a, operator, b);
-            displayText.textContent = temp;
-            console.log(`result: ${temp}`);
+            result = operate(a, operator, b);
+            displayText.textContent = result;
+            console.log(`result: ${result}`);
             console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
         }
     });
 }
-experiment();
+//experiment();
