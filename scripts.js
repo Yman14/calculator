@@ -122,10 +122,20 @@ function calculation(){
             if(ops.includes(e.target.textContent))
             {
                 //if operator is pressed again and result is defined, assign result to a
-                if(result != undefined) a = result;
+                if(result != undefined) {
+                    a = result;
+                }
+
+                //if both a and b are defined, perform operation
+                if(a != undefined && b != undefined) {
+                    console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
+                    result = operate(a, operator, b);
+                    display(result);
+                    console.log(`result: ${result}`);
+                }
 
                 operator = e.target.textContent;
-                display(e.target.textContent);
+                //display(e.target.textContent);
                 console.log(`operator: ${operator}`);
                 //ui
                 opButtonUIReset();
