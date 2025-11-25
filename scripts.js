@@ -82,6 +82,7 @@ function calculation(){
             (a != undefined) ? b = parseInt(e.target.textContent) : a = parseInt(e.target.textContent);
             display(e.target.textContent);
             console.log(`a: ${a} | b: ${b}`);
+            opButtonUIReset();
         }
         //take operator input
         if(e.target.classList.contains('button-op'))
@@ -109,6 +110,8 @@ function calculation(){
             result = operate(a, operator, b);
             display(result);
             console.log(`result: ${result}`);
+
+            opButtonUIReset();
         }
     });
 }
