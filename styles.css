@@ -70,7 +70,7 @@ body {
     border: 2px solid orange;
 }
 
-.number-row {
+.main-buttons .row {
     width: 100%;
     height: 20%;
     display: flex;
@@ -79,7 +79,7 @@ body {
     border: 2px solid #0a0a24;
 }
 
-.number-row div {
+.row div {
     width: 20%;
     height: 80%;
     background-color: gray;

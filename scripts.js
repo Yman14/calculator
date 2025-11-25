@@ -78,11 +78,6 @@ function experiment(){
     console.log(numbers);
     console.log(ops);
 
-    const temp = document.querySelector('.button-text');
-    temp.addEventListener('click', (e) => {
-        console.log('click');
-        if (e.target.textContent == "7") displayText.textContent = "7";
-    });
     const mainButtons  = document.querySelector('.main-buttons');
     mainButtons.addEventListener('click', (e) =>{
         if(e.target.classList.contains('button-number'))
@@ -91,6 +86,12 @@ function experiment(){
             a = parseInt(e.target.textContent);
             console.log(`a: ${a}`);
         }
-    })
+        if(e.target.classList.contains('button-op'))
+        {
+            displayText.textContent = e.target.textContent;
+            operator = e.target.textContent;
+            console.log(`operator: ${operator}`);
+        }
+    });
 }
 experiment();
