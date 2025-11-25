@@ -76,6 +76,20 @@ function opButtonUIReset(){
     });
 }
 
+function operatorClicked(){
+    let validateClicked = false;
+    const btn = document.querySelectorAll('.button-op');
+    for(let i=0; i<btn.length; i++)
+    {
+        if(btn[i].classList.contains('clicked'))
+        {
+            validateClicked = true;
+            break;
+        }
+    }
+    return validateClicked;
+}
+
 function calculation(){
     //set display
     display("0");    
@@ -86,6 +100,13 @@ function calculation(){
         //take number inputs
         if(e.target.classList.contains('button-number'))
         {
+            //if number is clicked after result is shown and no operator is clicked, clear
+            if(!operatorClicked() && a != undefined && result != undefined)
+            {
+                clear();
+            }
+
+
             console.log(`a: ${a} | b: ${b}`);
             //store first input to a then if a is defined, store to b
             (a != undefined) ? b = parseInt(e.target.textContent) : a = parseInt(e.target.textContent);
