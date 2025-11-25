@@ -3,7 +3,7 @@ validate.classList.add("validated");
 
 //global
 let a, operator, b;
-const displayText = document.querySelector(".screen-text");
+let displayText = document.querySelector(".screen-text");
 displayText.textContent = "Hello world!";
 
 //
@@ -72,10 +72,25 @@ function experiment(){
         const arr = ["/", "x", "-", "=", "+",];
         return (arr.includes(op));
     });
-    
+
     console.log(buttons);
     console.log(buttonTexts);
     console.log(numbers);
     console.log(ops);
+
+    const temp = document.querySelector('.button-text');
+    temp.addEventListener('click', (e) => {
+        console.log('click');
+        if (e.target.textContent == "7") displayText.textContent = "7";
+    });
+    const mainButtons  = document.querySelector('.main-buttons');
+    mainButtons.addEventListener('click', (e) =>{
+        if(e.target.classList.contains('button-number'))
+        {
+            displayText.textContent = e.target.textContent;
+            a = parseInt(e.target.textContent);
+            console.log(`a: ${a}`);
+        }
+    })
 }
 experiment();

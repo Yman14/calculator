@@ -95,16 +95,25 @@ body {
 }
 
 
-.number-row:last-of-type::before{
+/* .number-row:last-of-type::before{
     width: 20%;
     height: 80%;
     content: "";
-}
+} */
 
 .button-text {
     text-align: center;
     font-size: 1.5rem;
+    color: white;
     margin: 0;
+}
+
+.button-number, .button-op {
+    width: 20%;
+    height: 80%;
+    background-color: gray;
+    border: none;
+    border-radius: 10px;
 }
 
 
