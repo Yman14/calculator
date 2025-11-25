@@ -51,7 +51,7 @@ function getInput(){
 function operate(a, operator, b){
     if(operator == "+") return add(a, b);
     if(operator == "-") return substract(a, b);
-    if(operator == "*") return multiply(a, b);
+    if(operator == "x") return multiply(a, b);
     if(operator == "/") return divide(a, b);
     return `Invalid operator: ${operator}`;
 }
@@ -85,9 +85,10 @@ function experiment(){
     mainButtons.addEventListener('click', (e) =>{
         if(e.target.classList.contains('button-number'))
         {
+            console.log(`a: ${a} | b: ${b}`);
             displayText.textContent = e.target.textContent;
-            a = parseInt(e.target.textContent);
-            console.log(`a: ${a}`);
+            (a != undefined) ? b = parseInt(e.target.textContent) : a = parseInt(e.target.textContent);
+            console.log(`a: ${a} | b: ${b}`);
         }
         if(e.target.classList.contains('button-op'))
         {
@@ -104,12 +105,9 @@ function experiment(){
         //pressing equal button
         if(e.target.textContent == "=")
         {
-            b = 7; //hardcoded for testing
-            const temp = operate(a, operator, 7);
+            const temp = operate(a, operator, b);
             displayText.textContent = temp;
             console.log(`result: ${temp}`);
-            console.log(`test: ${operate(a, operator, b)}`);
-            console.log(`test: ${operate(2, "+", 3)}`);
             console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
         }
     });
