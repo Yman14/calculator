@@ -1,0 +1,2 @@
+cant take more than 1 digit e.g. >= 10
+cant take float, no decimal button
