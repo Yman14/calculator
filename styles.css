@@ -56,7 +56,6 @@ body {
 .buttons-container .main-buttons {
     width: 90%;
     height: 70%;
-    border: 2px solid green;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -76,36 +75,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid #0a0a24;
-}
-
-.row div {
-    width: 20%;
-    height: 80%;
-    background-color: gray;
-    border: none;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.number-row div:hover {
-    background-color: lightslategray;
-}
-
-
-/* .number-row:last-of-type::before{
-    width: 20%;
-    height: 80%;
-    content: "";
-} */
-
-.button-text {
-    text-align: center;
-    font-size: 1.5rem;
-    color: white;
-    margin: 0;
 }
 
 .button-number, .button-op {
@@ -116,4 +85,30 @@ body {
     border-radius: 10px;
 }
 
+.button-op {
+    background-color: darkorange;
+}
+
+.button-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    margin: 0;
+}
+
+.button-text:hover {
+    cursor: pointer;
+    background-color: lightslategray;
+}
+
+.button-text:active {
+    background-color: black;
+    border: 3px solid gray;
+}
+
+.button-op.clicked {
+    background-color: black;
+    border: 2px solid gray;
+    cursor: default;
+}
 
