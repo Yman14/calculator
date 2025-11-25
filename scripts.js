@@ -130,6 +130,8 @@ function calculation(){
                 if(a != undefined && b != undefined) {
                     console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
                     result = operate(a, operator, b);
+                    a = result;
+                    b = undefined; //reset b for next input
                     display(result);
                     console.log(`result: ${result}`);
                 }
@@ -148,6 +150,11 @@ function calculation(){
             console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
 
             result = operate(a, operator, b);
+            
+            //reset b for next calculation
+            b = undefined;
+
+            //display result
             display(result);
             console.log(`result: ${result}`);
 
