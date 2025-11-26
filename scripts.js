@@ -60,6 +60,7 @@ function display(text){
     displayText = document.querySelector(".screen-text");
     displayText.textContent = text;
     console.log(`Display: ${text}`);
+    console.log(`a: ${a} | b: ${b} | operator: ${operator} | result: ${result}`);
 }
 
 function clear(){
@@ -182,9 +183,27 @@ function newCalculationSystem(){
         //take number inputs
         if(e.target.classList.contains('button-number'))
         {
-            display(e.target.textContent);
+            if(!operatorClicked())
+            {
+                (a == undefined) ? display(e.target.textContent) : display(displayText.textContent + e.target.textContent);
+                a = parseInt(displayText.textContent);
+            }
+            else
+            {
+                (b == undefined) ? display(e.target.textContent) : display(displayText.textContent + e.target.textContent);
+                b = parseInt(displayText.textContent);
+            }
         }
 
+        //take operator input
+        if(e.target.classList.contains('button-op'))
+        {
+            operator = e.target.textContent;
+            console.log(`operator: ${operator}`);
+            //ui
+            opButtonUIReset();
+            e.target.classList.add('clicked');
+        }
 
         //pressing clear button
         if(e.target.textContent == "CL")
