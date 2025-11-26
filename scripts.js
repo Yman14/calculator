@@ -3,7 +3,8 @@ validate.classList.add("validated");
 
 //global
 let a, operator, b, result;
-calculation();
+//calculation();
+newCalculationSystem();
 
 //
 //prototype();
@@ -58,6 +59,7 @@ function operate(a, operator, b){
 function display(text){
     let displayText = document.querySelector(".screen-text");
     displayText.textContent = text;
+    console.log(`Display: ${text}`);
 }
 
 function clear(){
@@ -166,6 +168,21 @@ function calculation(){
         {
             clear();
             console.log("clear pressed");
+        }
+    });
+}
+
+function newCalculationSystem(){
+    //set display
+    display("new Calculation System");
+
+    //logic for button clicks to input values
+    const mainButtons  = document.querySelector('.buttons-container');
+    mainButtons.addEventListener('click', (e) =>{
+        //take number inputs
+        if(e.target.classList.contains('button-number'))
+        {
+            display(e.target.textContent);
         }
     });
 }
