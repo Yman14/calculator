@@ -1,2 +1,7 @@
 cant take more than 1 digit e.g. >= 10
 cant take float, no decimal button
+numbers goes outside the screen
+
+system is flawed, can only take 1 digit
+
+
