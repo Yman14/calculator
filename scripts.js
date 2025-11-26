@@ -2,7 +2,7 @@ const validate = document.querySelector("h1");
 validate.classList.add("validated");
 
 //global
-let a, operator, b, result;
+let a, operator, b, result, displayText;
 //calculation();
 newCalculationSystem();
 
@@ -57,7 +57,7 @@ function operate(a, operator, b){
 }
 
 function display(text){
-    let displayText = document.querySelector(".screen-text");
+    displayText = document.querySelector(".screen-text");
     displayText.textContent = text;
     console.log(`Display: ${text}`);
 }
@@ -183,6 +183,14 @@ function newCalculationSystem(){
         if(e.target.classList.contains('button-number'))
         {
             display(e.target.textContent);
+        }
+
+
+        //pressing clear button
+        if(e.target.textContent == "CL")
+        {
+            clear();
+            console.log("clear pressed");
         }
     });
 }
