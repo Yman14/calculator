@@ -72,6 +72,18 @@ function clear(){
     opButtonUIReset();
 }
 
+function equalButtonPressed(){
+    result = operate(a, operator, b); 
+    //setup variables for next calculation
+    b = undefined;
+    a = result;
+
+    //ui
+    display(result);
+    console.log(`result: ${result}`);
+    opButtonUIReset();
+}
+
 function opButtonUIReset(){
     const opButtons = document.querySelectorAll('.button-op');
     opButtons.forEach((button) => {
@@ -213,12 +225,7 @@ function newCalculationSystem(){
         //pressing equal button
         if(e.target.textContent == "=")
         {
-            result = operate(a, operator, b);
-            
-            //display result
-            display(result);
-            console.log(`result: ${result}`);
-            opButtonUIReset();
+            equalButtonPressed();
         }
 
         //pressing clear button
