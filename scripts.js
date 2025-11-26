@@ -198,11 +198,27 @@ function newCalculationSystem(){
         //take operator input
         if(e.target.classList.contains('button-op'))
         {
-            operator = e.target.textContent;
-            console.log(`operator: ${operator}`);
-            //ui
+            //to make sure only these operators are considered
+            const ops = ["/", "x", "-", "+",];
+            if(ops.includes(e.target.textContent))
+            {
+                operator = e.target.textContent;
+                console.log(`operator: ${operator}`);
+                //ui
+                opButtonUIReset();
+                e.target.classList.add('clicked');
+            }
+        }
+
+        //pressing equal button
+        if(e.target.textContent == "=")
+        {
+            result = operate(a, operator, b);
+            
+            //display result
+            display(result);
+            console.log(`result: ${result}`);
             opButtonUIReset();
-            e.target.classList.add('clicked');
         }
 
         //pressing clear button
