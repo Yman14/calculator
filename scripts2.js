@@ -1,0 +1,195 @@
+const validate = document.querySelector("h1");
+validate.classList.add("validated");
+
+//global
+let a, operator, b, result, displayText;
+let decimalPressed = false; //to track if decimal button is pressed
+
+//initialize calculation system to run the program
+calculationSystem();
+
+
+function add(a, b){
+    return a+b;
+}
+
+function substract(a, b){
+    return a-b;
+}
+
+function multiply(a, b){
+    return a*b;
+}
+
+function divide(a, b){
+    return a/b;
+}
+
+
+function operate(a, operator, b){
+    if(operator == "+") return add(a, b);
+    if(operator == "-") return substract(a, b);
+    if(operator == "x") return multiply(a, b);
+    if(operator == "/") return divide(a, b);
+    return `Invalid operator: ${operator}`;
+}
+
+function display(text){
+    displayText = document.querySelector(".screen-text");
+    displayText.textContent = text;
+    console.log(`Display: ${text}`);
+    console.log(`a: ${a} | b: ${b} | operator: ${operator} | result: ${result}`);
+}
+
+function clear(){
+    a = undefined;
+    b = undefined;
+    operator = undefined;
+    result = undefined;
+    display("0");
+    opButtonUIReset();
+}
+
+function deleteLast(){
+    let currentText = displayText.textContent;
+    if(currentText.length > 1){
+        currentText = currentText.slice(0, -1);
+        display(currentText);
+        (operatorClicked()) ? b = parseFloat(currentText) : a = parseFloat(currentText);
+    }
+}
+
+function equalButtonPressed(){
+    result = operate(a, operator, b); 
+    //setup variables for next calculation
+    b = undefined;
+    a = result;
+
+
+    //ui
+    display(result);
+    console.log(`result: ${result}`);
+    opButtonUIReset();
+}
+
+function opButtonUIReset(){
+    const opButtons = document.querySelectorAll('.button-op');
+    opButtons.forEach((button) => {
+        button.classList.remove('clicked');
+    });
+}
+
+function operatorClicked(){
+    let validateClicked = false;
+    const btn = document.querySelectorAll('.button-op');
+    for(let i=0; i<btn.length; i++)
+    {
+        if(btn[i].classList.contains('clicked'))
+        {
+            validateClicked = true;
+            break;
+        }
+    }
+    return validateClicked;
+}
+
+function calculationSystem(){
+    //set display
+    display("0");
+
+    //logic for button clicks to input values
+    const mainButtons  = document.querySelector('.buttons-container');
+    mainButtons.addEventListener('click', (e) =>{
+        //take number inputs
+        if(e.target.classList.contains('button-number'))
+        {
+            //store number to a if operator not clicked yet else b
+            if(!operatorClicked())
+            {
+                if(decimalPressed){
+                    decimalPressed = false;
+                    display(displayText.textContent + e.target.textContent);
+                }
+                else if (a == undefined){
+                    display(e.target.textContent);
+                }
+                else {
+                    display(displayText.textContent + e.target.textContent);
+                }
+                a = parseFloat(displayText.textContent);
+            }
+            else
+            {
+                //opButtonUIReset();
+                if(decimalPressed){
+                    decimalPressed = undefined;
+                    display(displayText.textContent + e.target.textContent);
+                }
+                else if (b == undefined){
+                    display(e.target.textContent);
+                }
+                else {
+                    display(displayText.textContent + e.target.textContent);
+                }
+                b = parseFloat(displayText.textContent);
+            }
+        }
+
+        //take operator input
+        if(e.target.classList.contains('button-op'))
+        {
+
+            //to make sure only these operators are considered
+            const ops = ["/", "x", "-", "+",];
+            if(ops.includes(e.target.textContent))
+            {
+                //if operator is pressed again after a and b is defined, perform operation
+                //to show result before next operator is selected
+                if(a != undefined && b != undefined) {
+                    //this was how normal calculator worked
+                    equalButtonPressed();
+                }
+                //only assign operator if a is defined
+                if(a != undefined){
+                    operator = e.target.textContent;
+                    console.log(`operator: ${operator}`);
+                    //ui
+                    opButtonUIReset();
+                    e.target.classList.add('clicked');
+                }
+                
+            }
+        }
+
+        //if decimal button is pressed
+        if(e.target.classList.contains('button-decimal')) {
+            if(displayText.textContent.includes('.')) return; //prevent multiple decimals
+            
+                decimalPressed = true;
+                display(displayText.textContent + '.');
+            
+        }
+
+        //pressing equal button
+        if(e.target.textContent == "=")
+        {
+            equalButtonPressed();
+        }
+
+        //pressing clear button
+        if(e.target.textContent == "CL")
+        {
+            clear();
+            console.log("clear pressed");
+        }
+
+        //pressing delete button
+        if(e.target.textContent == "DL")
+        {
+            deleteLast();
+            console.log("delete pressed");
+        }
+    });
+}
+
+
