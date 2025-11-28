@@ -79,7 +79,7 @@ function deleteLast(){
     if(currentText.length > 1){
         currentText = currentText.slice(0, -1);
         display(currentText);
-        (operatorClicked) ? b = parseFloat(currentText) : a = parseFloat(currentText);
+        (operatorClicked()) ? b = parseFloat(currentText) : a = parseFloat(currentText);
     }
 }
 
@@ -130,7 +130,7 @@ function calculationSystem(){
         //take number inputs
         if(e.target.classList.contains('button-number'))
         {
-
+            //store number to a if operator not clicked yet else b
             if(!operatorClicked())
             {
                 if(decimalPressed){
@@ -210,6 +210,13 @@ function calculationSystem(){
         {
             clear();
             console.log("clear pressed");
+        }
+
+        //pressing delete button
+        if(e.target.textContent == "DL")
+        {
+            deleteLast();
+            console.log("delete pressed");
         }
     });
 }
