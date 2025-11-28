@@ -3,8 +3,9 @@ validate.classList.add("validated");
 
 //global
 let a, operator, b, result, displayText;
-//calculation();
-newCalculationSystem();
+
+//initialize calculation system to run the program
+calculationSystem();
 
 //
 //prototype();
@@ -109,93 +110,9 @@ function operatorClicked(){
     return validateClicked;
 }
 
-function calculation(){
+function calculationSystem(){
     //set display
-    display("0");    
-
-    //logic for button clicks to input values
-    const mainButtons  = document.querySelector('.buttons-container');
-    mainButtons.addEventListener('click', (e) =>{
-        //take number inputs
-        if(e.target.classList.contains('button-number'))
-        {
-            //if number is clicked after result is shown and no operator is clicked, clear
-            if(!operatorClicked() && a != undefined && result != undefined)
-            {
-                clear();
-            }
-
-
-            console.log(`a: ${a} | b: ${b}`);
-            //store first input to a then if a is defined, store to b
-            (a != undefined) ? b = parseInt(e.target.textContent) : a = parseInt(e.target.textContent);
-            display(e.target.textContent);
-            console.log(`a: ${a} | b: ${b}`);
-            opButtonUIReset();
-        }
-        //take operator input
-        if(e.target.classList.contains('button-op'))
-        {
-            //to make sure only these operators are considered
-            const ops = ["/", "x", "-", "+",];
-            if(ops.includes(e.target.textContent))
-            {
-                //if operator is pressed again and result is defined, assign result to a
-                if(result != undefined) {
-                    a = result;
-                }
-
-                //if both a and b are defined, perform operation
-                if(a != undefined && b != undefined) {
-                    console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
-                    result = operate(a, operator, b);
-                    a = result;
-                    b = undefined; //reset b for next input
-                    display(result);
-                    console.log(`result: ${result}`);
-                }
-
-                operator = e.target.textContent;
-                //display(e.target.textContent);
-                console.log(`operator: ${operator}`);
-                //ui
-                opButtonUIReset();
-                e.target.classList.add('clicked');
-            }
-        }
-        //pressing equal button
-        if(e.target.textContent == "=")
-        {
-            console.log(`a: ${a} | operator: ${operator} | b: ${b}`);
-
-            result = operate(a, operator, b);
-            
-            //reset b for next calculation
-            b = undefined;
-
-            //display result
-            display(result);
-            console.log(`result: ${result}`);
-
-            opButtonUIReset();
-        }
-
-        //pressing clear button
-        if(e.target.textContent == "CL")
-        {
-            clear();
-            console.log("clear pressed");
-        }
-    });
-}
-
-function newCalculationSystem(){
-    //set display
-    display("new Calculation System");
-    if(a != undefined || b != undefined || operator != undefined || result != undefined)
-    {
-        result = operate(a, operator, b);
-    }
+    display("0");
 
     //logic for button clicks to input values
     const mainButtons  = document.querySelector('.buttons-container');
