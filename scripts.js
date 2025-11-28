@@ -74,6 +74,15 @@ function clear(){
     opButtonUIReset();
 }
 
+function deleteLast(){
+    let currentText = displayText.textContent;
+    if(currentText.length > 1){
+        currentText = currentText.slice(0, -1);
+        display(currentText);
+        (operatorClicked) ? b = parseFloat(currentText) : a = parseFloat(currentText);
+    }
+}
+
 function equalButtonPressed(){
     result = operate(a, operator, b); 
     //setup variables for next calculation
