@@ -204,12 +204,17 @@ function newCalculationSystem(){
             {
                 (b == undefined) ? display(e.target.textContent) : display(displayText.textContent + e.target.textContent);
                 b = parseInt(displayText.textContent);
+                opButtonUIReset();
             }
         }
 
         //take operator input
         if(e.target.classList.contains('button-op'))
         {
+            // if(operatorClicked() && a != undefined && b != undefined)
+            // {
+            //     equalButtonPressed();
+            // }
             //to make sure only these operators are considered
             const ops = ["/", "x", "-", "+",];
             if(ops.includes(e.target.textContent))
