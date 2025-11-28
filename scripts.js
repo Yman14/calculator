@@ -76,7 +76,11 @@ function equalButtonPressed(){
     result = operate(a, operator, b); 
     //setup variables for next calculation
     b = undefined;
-    a = result;
+    //this is how normal calculator worked
+    //a = result;
+    //but to fit requirement system
+    a = undefined;
+    operator = undefined;
 
     //ui
     display(result);
@@ -223,14 +227,20 @@ function newCalculationSystem(){
                 //if operator is pressed again after a and b is defined, perform operation
                 //to show result before next operator is selected
                 if(a != undefined && b != undefined) {
-                    equalButtonPressed();
+                    //this was how normal calculator worked
+                    //equalButtonPressed();
+                    //but to fit requirement system
+                    clear();
                 }
-
-                operator = e.target.textContent;
-                console.log(`operator: ${operator}`);
-                //ui
-                opButtonUIReset();
-                e.target.classList.add('clicked');
+                //only assign operator if a is defined
+                if(a != undefined){
+                    operator = e.target.textContent;
+                    console.log(`operator: ${operator}`);
+                    //ui
+                    opButtonUIReset();
+                    e.target.classList.add('clicked');
+                }
+                
             }
         }
 
