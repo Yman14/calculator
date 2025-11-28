@@ -90,7 +90,7 @@ body {
     justify-content: space-between;
 }
 
-.button-number, .button-op, .button-other {
+.button-number, .button-op, .button-decimal, .button-other {
     width: 20%;
     height: 80%;
     background-color: gray;
