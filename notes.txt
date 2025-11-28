@@ -4,4 +4,5 @@ numbers goes outside the screen
 
 system is flawed, can only take 1 digit
 
+double equalpressed button bug
 
