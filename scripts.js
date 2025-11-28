@@ -3,6 +3,7 @@ validate.classList.add("validated");
 
 //global
 let a, operator, b, result, displayText;
+let decimalPressed = false; //to track if decimal button is pressed
 
 //initialize calculation system to run the program
 calculationSystem();
@@ -120,16 +121,35 @@ function calculationSystem(){
         //take number inputs
         if(e.target.classList.contains('button-number'))
         {
+
             if(!operatorClicked())
             {
-                (a == undefined) ? display(e.target.textContent) : display(displayText.textContent + e.target.textContent);
-                a = parseInt(displayText.textContent);
+                if(decimalPressed){
+                    decimalPressed = false;
+                    display(displayText.textContent + e.target.textContent);
+                }
+                else if (a == undefined){
+                    display(e.target.textContent);
+                }
+                else {
+                    display(displayText.textContent + e.target.textContent);
+                }
+                a = parseFloat(displayText.textContent);
             }
             else
             {
-                (b == undefined) ? display(e.target.textContent) : display(displayText.textContent + e.target.textContent);
-                b = parseInt(displayText.textContent);
-                opButtonUIReset();
+                //opButtonUIReset();
+                if(decimalPressed){
+                    decimalPressed = undefined;
+                    display(displayText.textContent + e.target.textContent);
+                }
+                else if (b == undefined){
+                    display(e.target.textContent);
+                }
+                else {
+                    display(displayText.textContent + e.target.textContent);
+                }
+                b = parseFloat(displayText.textContent);
             }
         }
 
@@ -159,6 +179,15 @@ function calculationSystem(){
                 }
                 
             }
+        }
+
+        //if decimal button is pressed
+        if(e.target.classList.contains('button-decimal')) {
+            if(displayText.textContent.includes('.')) return; //prevent multiple decimals
+            
+                decimalPressed = true;
+                display(displayText.textContent + '.');
+            
         }
 
         //pressing equal button
