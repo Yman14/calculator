@@ -188,6 +188,10 @@ function calculation(){
 function newCalculationSystem(){
     //set display
     display("new Calculation System");
+    if(a != undefined || b != undefined || operator != undefined || result != undefined)
+    {
+        result = operate(a, operator, b);
+    }
 
     //logic for button clicks to input values
     const mainButtons  = document.querySelector('.buttons-container');
@@ -211,14 +215,17 @@ function newCalculationSystem(){
         //take operator input
         if(e.target.classList.contains('button-op'))
         {
-            // if(operatorClicked() && a != undefined && b != undefined)
-            // {
-            //     equalButtonPressed();
-            // }
+
             //to make sure only these operators are considered
             const ops = ["/", "x", "-", "+",];
             if(ops.includes(e.target.textContent))
             {
+                //if operator is pressed again after a and b is defined, perform operation
+                //to show result before next operator is selected
+                if(a != undefined && b != undefined) {
+                    equalButtonPressed();
+                }
+
                 operator = e.target.textContent;
                 console.log(`operator: ${operator}`);
                 //ui
